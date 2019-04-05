@@ -13,5 +13,6 @@
 		<?=$flag_code?>
 	</div>
 	<img src="<?=$flag_code?>" style="width:100px; height: auto;">
+	<br><br>Rendered in: {elapsed_time} sec
 </body>
 </html>
