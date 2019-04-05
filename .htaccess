@@ -1,0 +1,21 @@
+<FilesMatch ".(eot|ttf|otf|woff)">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+
+# BEGIN Rewrite
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteCond $1 !^(index\.php|resources|robots\.txt)
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+</IfModule>
+# END Rewrite
+
+<IfModule mod_php7.c>
+   php_value upload_max_filesize 100M
+   php_value post_max_size 100M
+   php_value memory_limit 512M
+   php_value max_execution_time 600
+   php_value max_input_time 600
+</IfModule>
