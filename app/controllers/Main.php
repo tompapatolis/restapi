@@ -12,10 +12,11 @@ public function index() {
 	//87.146.133.96 Germany
 	
 	$data = array('ip' => '109.242.108.77');
-	$result = $this->mod_rest->CallAPI('POST','http://[::1]/projects/restapi/api/country',$data);
+	$result = $this->mod_rest->CallAPI('POST','https://api.tomsnews.net/api/country',$data);
 	// $data = array('country_code' => 'DE');
 	// $result = $this->mod_rest->CallAPI('POST','http://[::1]/projects/restapi/api/flag',$data);
 	echo $result;
+	//echo "tomsnews.net API v1.100.1";
 }
 
 public function api($request=NULL) {
@@ -23,7 +24,7 @@ public function api($request=NULL) {
 	$headers = apache_request_headers();
 	if (isset($headers['APIKEY'])) {
 		$api_key = $headers['APIKEY'];
-		if($api_key!='123') {
+		if($api_key!='p2vMXw9NKkzAnfl4QRCagDE1t') {
 			$output = array('message' => 'invalid APIKEY');
 			echo json_encode($output);
 			return;

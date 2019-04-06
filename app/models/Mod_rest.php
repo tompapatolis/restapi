@@ -52,7 +52,7 @@ function callAPI($method, $url, $data){
     // OPTIONS:
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-      'APIKEY: 123',
+      'APIKEY: p2vMXw9NKkzAnfl4QRCagDE1t',
       'Content-Type: application/json',
     ));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -71,7 +71,6 @@ function processAPI($request=NULL,$json_obj=NULL) {
         case 'country':
             $ip     = $json_obj['ip'];
             $ip_data = $this->mod_rest->ip2location($ip);
-
             $output = array(
                 'country'      => $ip_data[0],
                 'country_code' => $ip_data[1]
