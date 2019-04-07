@@ -5,7 +5,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Verdin API</title>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<?=link_tag(theme_assets().'fonts/stylesheet.css')?>
+	<?=link_tag(theme_assets().'verdin_icons/style.css')?>
 	<?=link_tag(theme_url().'style.min.css')?>
 
 	<link rel="apple-touch-icon" sizes="57x57" href="<?=theme_images().'icon/'?>apple-icon-57x57.png">

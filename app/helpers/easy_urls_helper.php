@@ -6,8 +6,8 @@ if ( ! function_exists('theme_url')) {
     }   
 }
 
-if ( ! function_exists('assets_url')) {
-    function assets_url() {
+if ( ! function_exists('theme_assets')) {
+    function theme_assets() {
         return base_url().'content/theme/assets/';
     }   
 }

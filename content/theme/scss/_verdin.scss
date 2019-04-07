@@ -294,7 +294,7 @@ blockquote {
   -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased;
   display: inline-block; font-style: normal;
   font-variant: normal; text-rendering: auto; line-height: 1;
-  font-weight: 400; font-family: 'icomoon'; text-decoration: none;
+  font-weight: 400; font-family: 'Verdin Icons'; text-decoration: none;
 }
 
 .vi-lg  {font-size: 1.33333rem;line-height: .75rem;vertical-align: -.175em;}
@@ -605,20 +605,22 @@ input.form-control::placeholder {color:#aaa;}
 .btn {
 	display: inline-block;
 	font-weight: 400;
-	color: $color_text;
+	color: rgba(0,0,0,.8);
 	text-align: center;
 	vertical-align: middle;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	user-select: none;
-	border:none;
+	user-select: none;	
 	background-color: transparent;
-	padding: 0.375rem 0.75rem;
-	font-size: 1rem;
-	line-height: 1.5;
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; 
-	&.shadow {box-shadow: 0 2px 4px rgba(0,0,0,.1);}
+	border: 1px solid transparent;
+	padding: 0.375rem 1.25rem;
+	font-size: .85rem;
+	line-height: 1.5rem;
+	transition: color .15s ease-in-out,
+		background-color .15s ease-in-out,
+		border-color .15s ease-in-out,
+		box-shadow .15s ease-in-out;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -626,14 +628,11 @@ input.form-control::placeholder {color:#aaa;}
 }
 
 .btn:hover {
-	color: darken($color_text,10);
 	text-decoration: none;
-	&.shadow {box-shadow: 0 3px 5px rgba(0,0,0,.3);}  
 }
 
-.btn:focus, .btn.focus {
+.btn:focus, .btn.focus, .btn:active, .btn.active {
 	outline: 0;
-	&.shadow {box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);}
 }
 
 .btn.disabled, .btn:disabled {
@@ -677,13 +676,29 @@ input[type="button"].btn-block {
 }
 
 // Colors
-.btn.red {
+.btn.outline, .btn.white {
+	color: rgba(0,0,0,.85);
+	border-color: rgba(0,0,0,.15);
 	&:hover{
-		color: #f7f7f7;
-  		background: #999;
+		color: #000; border-color: rgba(0,0,0,.35);
 	}
 	&:focus, &:active {
-		color: #f7f7f7;
-  		background: #999;
+		color: #fff; background-color: rgba(0,0,0,.25);
+		border-color: transparent;
 	}
 }
+
+.btn.white {background-color: #fff;}
+
+.btn.red,.btn.blue,.btn.green,.btn.yellow,.btn.gray  {
+	color: rgba(255,255,255,.9);	
+	border-color: transparent;
+	&:hover{color: #fff;background-image: linear-gradient(rgba(0,0,0,.1) 50%,rgba(0,0,0,.01) 100%);}
+	&:focus, &:active {color: #fff;background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15));}
+}
+
+.btn.red    {background-color: #ff3860;}
+.btn.blue   {background-color: #3273dc;}
+.btn.green  {background-color: #00d1b2;}
+.btn.yellow {background-color: #ffdd57;color: rgba(0,0,0,.8);}
+.btn.gray   {background-color: #555;}
