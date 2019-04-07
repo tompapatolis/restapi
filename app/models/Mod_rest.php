@@ -16,7 +16,7 @@ function ip2location($ip) {
 }
 
 function getFlag($countrycode) {
-    $path = './media/flags/' . strtolower($countrycode) . '.svg';
+    $path = './content/images/flags/' . strtolower($countrycode) . '.svg';
 
     if (file_exists($path)) {
         $data = file_get_contents($path);
@@ -42,7 +42,7 @@ function callAPI($method, $url, $data){
       case "PUT":
          curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
          if ($json_data)
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $json_data);                              
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $json_data);
          break;
       default:
          if ($json_data)
@@ -91,4 +91,3 @@ function processAPI($request=NULL,$json_obj=NULL) {
 }
 
 } // END Mod_rest
-

@@ -1,0 +1,17 @@
+@import 'reboot'; @import 'verdin';
+
+/**
+ * Colors
+ */
+
+$color_text: 		#333;
+$color_background:  #f7f7f7;
+$color_red:  		#DC3546;
+
+body {
+	font-family: 'Montserrat', 'Open Sans', Roboto, sans-serif;
+	color: $color_text;
+	background: $color_background;
+}
+
+a {color: $color_red;}
