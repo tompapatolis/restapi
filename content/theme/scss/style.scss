@@ -8,6 +8,18 @@ $color_text: 		#333;
 $color_background:  #f7f7f7;
 $color_red:  		#DC3546;
 
+/**
+ * Shadows
+ */
+
+$shadow_basic: 0 2px 4px rgba(0,0,0,.1);
+$shadow_3d: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);
+$shadow_3d_short: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2);
+$shadow_top: 	inset  0  15px 15px -15px rgba(0,0,0,0.25);
+$shadow_bottom: inset  0  -15px 15px -15px rgba(0,0,0,0.25);
+$shadow_left: 	inset 15px 0px 15px -15px rgba(0,0,0,0.25);
+$shadow_right: 	inset -15px 0px 15px -15px rgba(0,0,0,0.25);
+
 body {
 	font-family: 'Montserrat', 'Open Sans', Roboto, sans-serif;
 	color: $color_text;
@@ -18,3 +30,20 @@ a {color: $color_red;}
 
 h1,h2,h3,.h1,.h2,.h3 {font-weight: 900;}
 h4,h5,h6,.h4,.h5,.h6 {font-weight: 800;}
+
+/**
+ * Statistics
+ */
+
+.stats-box-wrapper {
+	display:flex;flex-wrap:wrap;
+	.stats-box {
+		background: #fff;
+		margin:.25rem; padding: 1rem 1.375rem;
+		box-shadow: $shadow_basic;		
+	}
+	span.flag img {height: auto;width:2rem;}
+}
+@media(max-width: 990px) {
+	.stats-box-wrapper .stats-box {flex-basis:100%;}
+}

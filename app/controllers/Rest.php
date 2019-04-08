@@ -10,7 +10,7 @@ class Rest extends CI_Controller {
 public function index() {
 	//109.242.108.77 Greece
 	//87.146.133.96 Germany
-	$data = array('ip' => '109.242.108.77');
+	$data = array('ip' => '87.146.133.96');
 	$result = $this->mod_rest->CallAPI('POST',base_url().'api/country',$data);
 	// $data = array('country_code' => 'DE');
 	// $result = $this->mod_rest->CallAPI('POST','http://[::1]/projects/restapi/api/flag',$data);

@@ -124,6 +124,7 @@ function getStats2($table) {
         WHERE country <> 'Undefined' AND country <> '0'
         GROUP BY country
         ORDER BY cnt DESC
+        LIMIT 24
         ";     
     $query = $this->db->query($q);
     $stats['countries'] = $query->result_array();   
@@ -136,8 +137,28 @@ function getStats2($table) {
     $stats['php_info'] = $this->system_core->phpinfo_array();
 
     //* Popular Posts
+    $q = "
+        SELECT post_id, count(DISTINCT ip) as cnt
+        FROM $table
+        WHERE post_id <> -1
+        GROUP BY post_id
+        ORDER BY cnt DESC
+        LIMIT 24
+        ";     
+    $query = $this->db->query($q);
+    $stats['popular_posts'] = $query->result_array();   
 
     //* Popular Pages
+    $q = "
+        SELECT page_slug, count(DISTINCT ip) as cnt
+        FROM $table
+        WHERE page_slug <> ''
+        GROUP BY page_slug
+        ORDER BY cnt DESC
+        LIMIT 24
+        ";     
+    $query = $this->db->query($q);
+    $stats['popular_pages'] = $query->result_array();
 
     //* Average Visitors
     $q = "
@@ -170,9 +191,8 @@ function getStats2($table) {
     $query = $this->db->query($q);
     $old_daily_visitors = $query->result_array();
     $old_sumall = array_sum(array_column($old_daily_visitors,'cnt'));   
-    if($old_sumall != 0) {
-        $stats['growth'] = round(($sumall - $old_sumall)*100 / $old_sumall,2);
-    } else {$stats['growth'] = 0;}
+    if($old_sumall != 0) {$stats['growth'] = round(($sumall - $old_sumall)*100 / $old_sumall,2);}
+    else {$stats['growth'] = 0;}
 
     //* Return Stats
     return $stats;
