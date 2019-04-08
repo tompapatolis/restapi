@@ -8,13 +8,15 @@
  * Colors
  */
 
-$color_red:  	#DC3546;
-$color_blue:	#4285F4;
-$color_green: 	#2c7;
-$color_yellow:  #333;
-$color_orange:  #333;
-$color_gray:    #333;
-$color_text: 	#232323;
+$color_red:  		#ff3860;
+$color_blue:		#3273dc;
+$color_green: 		#00d1b2;
+$color_yellow:  	#ffdd57;
+$color_orange:      #FE9153;
+$color_turquoise:  	#1b9;
+$color_purple:  	#95b;
+$color_gray:    	#555;
+$color_darkgray:	#333;
 
 // Social Colors
 $c_whatsapp:    #25D366;
@@ -322,7 +324,7 @@ blockquote {
 
 .corner-ribbon{
   width: 200px;
-  background: #e43;
+  background: $color_red;
   position: absolute;
   top: 25px;
   left: -50px;
@@ -380,13 +382,13 @@ blockquote {
 .corner-ribbon.white{background: #f0f0f0; color: #555;}
 .corner-ribbon.black{background: #333;}
 .corner-ribbon.grey{background: #999;}
-.corner-ribbon.blue{background: #39d;}
-.corner-ribbon.green{background: #2c7;}
-.corner-ribbon.turquoise{background: #1b9;}
-.corner-ribbon.purple{background: #95b;}
-.corner-ribbon.red{background: #e43;}
-.corner-ribbon.orange{background: #e82;}
-.corner-ribbon.yellow{background: #ec0;}
+.corner-ribbon.blue{background: $color_blue;}
+.corner-ribbon.green{background: $color_green;}
+.corner-ribbon.turquoise{background: $color_turquoise;}
+.corner-ribbon.purple{background: $color_purple;}
+.corner-ribbon.red{background: $color_red;}
+.corner-ribbon.orange{background: $color_orange;}
+.corner-ribbon.yellow{background: $color_yellow;}
 
 // Small
 .ribbon {
@@ -500,7 +502,7 @@ div.nav-items {
 	a:hover, button:hover {background: #eee;text-decoration:none;color:#232323;}	
 	&.right {justify-content: flex-end;}
 	a.active {background:#eee;color:#232323;}
-	.nav-text {padding: 0 .75rem;color:#DC3546;}
+	.nav-text {padding: 0 .75rem;color:$color_red;}
 	.side-toggle {border:none;min-width: 3rem;background: transparent;
 		cursor: pointer;
 		i {transform:rotate(0deg);transition:all .2s ease-out;}
@@ -517,7 +519,7 @@ div.nav-items {
 	position: fixed; top:70px; right:0; display: none;
 	box-shadow: -5px 5px 8px rgba(0,0,0,.1);
 	border-top: 1px solid rgba(0,0,0,.1);
-	h2 {color:#DC3546;font-size: 1.1rem; line-height: 2rem;}
+	h2 {color:$color_red;font-size: 1.1rem; line-height: 2rem;}
 }
 
 .nav-sidebar {
@@ -718,11 +720,11 @@ input[type="button"].btn-block {
 	&:focus, &:active {color: #fff;background-image: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15));}
 }
 
-.btn.red    {background-color: #ff3860;}
-.btn.blue   {background-color: #3273dc;}
-.btn.green  {background-color: #00d1b2;}
-.btn.yellow {background-color: #ffdd57;color: rgba(0,0,0,.8);}
-.btn.gray   {background-color: #555;}
+.btn.red    {background-color: $color_red;}
+.btn.blue   {background-color: $color_blue;}
+.btn.green  {background-color: $color_green;}
+.btn.yellow {background-color: $color_yellow;color: rgba(0,0,0,.8);}
+.btn.gray   {background-color: $color_gray;}
 
 .btn-center {
 	display: table;
@@ -735,7 +737,7 @@ input[type="button"].btn-block {
 
 .btn-round {	
 	padding: 0;
-	font-size: 1.75rem;
+	font-size: 1.5rem;
 	line-height: 1rem;
 	height: 3rem; line-height: 3.1rem;
 	width: 3rem;
