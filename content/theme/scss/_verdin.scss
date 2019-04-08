@@ -679,7 +679,7 @@ input.form-control::placeholder {color:#aaa;}
 	line-height: 1.5;
 }
 
-.btn-block {
+.btn.btn-block {
 	display: block;
 	width: 100%;
 }
@@ -693,6 +693,7 @@ input[type="button"].btn-block {
 .btn-group {
 	display:flex;flex-wrap:wrap;
 	.btn {box-shadow:none;}
+	&.btn-block .btn {flex:1;}
 }
 
 // Colors
@@ -722,3 +723,23 @@ input[type="button"].btn-block {
 .btn.green  {background-color: #00d1b2;}
 .btn.yellow {background-color: #ffdd57;color: rgba(0,0,0,.8);}
 .btn.gray   {background-color: #555;}
+
+.btn-center {
+	display: table;
+	margin-left: auto; margin-right: auto;
+}
+.btn-right {
+	display: table;
+	margin-left: auto;
+}
+
+.btn-round {	
+	padding: 0;
+	font-size: 1.75rem;
+	line-height: 1rem;
+	height: 3rem; line-height: 3.1rem;
+	width: 3rem;
+	border-radius: 1.5rem;
+	text-align: center;
+	overflow: hidden;
+}
