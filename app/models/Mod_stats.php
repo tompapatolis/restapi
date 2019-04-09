@@ -37,7 +37,7 @@ function trackVisitor($post_id=-1) {
  * Statistics v2
  */
 
-function getStats2($table) {
+function getStats($table) {
     //* Users Now
     $q = "
         SELECT COUNT(distinct ip) AS cnt
@@ -47,13 +47,31 @@ function getStats2($table) {
     $query = $this->db->query($q);
     $stats['users_now'] = $query->row()->cnt;
 
+    //* Total Posts
+    $q = "
+        SELECT COUNT(distinct post_id) AS cnt
+        FROM $table
+        WHERE post_id <> -1 AND post_id IS NOT NULL
+        ";
+    $query = $this->db->query($q);
+    $stats['total_posts'] = $query->row()->cnt;    
+
+    //* Total Pages
+    $q = "
+        SELECT COUNT(distinct page_slug) AS cnt
+        FROM $table
+        WHERE page_slug <> '' AND page_slug IS NOT NULL
+        ";
+    $query = $this->db->query($q);
+    $stats['total_pages'] = $query->row()->cnt; 
+
     //* Daily Hits
     $q = "
         SELECT COUNT(id) AS cnt, DATE_FORMAT(created, '%d %M %Y') AS thedate
         FROM $table
         GROUP BY DATE(created)
         ORDER BY created DESC
-        LIMIT 15
+        LIMIT 24
         ";
     $query = $this->db->query($q);
     $stats['daily_hits'] = $query->result_array();
@@ -64,7 +82,7 @@ function getStats2($table) {
         FROM $table
         GROUP BY DATE(created)
         ORDER BY created DESC
-        LIMIT 15
+        LIMIT 24
         ";
     $query = $this->db->query($q);
     $stats['daily_visitors'] = $query->result_array();
@@ -195,127 +213,6 @@ function getStats2($table) {
     else {$stats['growth'] = 0;}
 
     //* Return Stats
-    return $stats;
-}
-
-function getStats() {
-    $stats = array();
-    
-    // Daily Hits
-    $q_string  = "SELECT COUNT(id) AS cnt, DATE_FORMAT(created, '%d %M %Y') AS thedate FROM stats GROUP BY DATE(created) ORDER BY created DESC LIMIT 15";
-    $query    = $this->db->query($q_string);
-    $stats['daily_hits'] = $query->result_array();
-
-    // Daily Visitors
-    $q_string  = "SELECT DATE_FORMAT(created, '%d %M %Y') AS thedate, COUNT(DISTINCT ip) as cnt FROM stats GROUP BY DATE(created) ORDER BY created DESC LIMIT 15";
-    $query    = $this->db->query($q_string);
-    $stats['daily_visitors'] = $query->result_array();
-
-    // Hourly Visitors
-    $timezone_dif = $this->config->item('cfg_timezone_interval');
-    $q_string = "
-        SELECT HOUR(DATE_ADD(created, INTERVAL $timezone_dif HOUR)) AS thehour,
-        COUNT(DISTINCT ip) as cnt
-        FROM stats
-        GROUP BY thehour";     
-    $query = $this->db->query($q_string);
-    $stats['hourly_visitors'] = $query->result_array();
-    $hourly_sum = array_sum(array_column($stats['hourly_visitors'],'cnt'));
-    foreach($stats['hourly_visitors'] as &$hourly_item) {
-        $hourly_item['perc'] = round($hourly_item['cnt']*100 / $hourly_sum,2);
-    } // END for each  
-
-    // Users Online
-    $q_string  = "SELECT COUNT(distinct ip) as cnt from stats WHERE created >= (NOW() - INTERVAL 5 MINUTE)";
-    $query    = $this->db->query($q_string);
-    $stats['users_online'] = $query->row_array();
-
-    // Cron Data
-    $stats['cron'] = $this->system_db->get_table('cron');
-
-    // Mobile Users
-    $q_string  = "SELECT ROUND(
-      (SELECT COUNT(id) FROM stats WHERE mobile<>'') / 
-      (SELECT COUNT(id) FROM stats)*100,1) AS cnt";
-    $query    = $this->db->query($q_string);
-    $stats['mobile_users'] = $query->row_array();
-
-    //Hits Today
-    $q_string  = "SELECT COUNT(id) AS cnt FROM stats WHERE DATE(created)=CURDATE()";
-    $query    = $this->db->query($q_string);    
-    $stats['hits_today'] = $query->row_array();
-
-    //Visitors Today
-    $q_string  = "SELECT COUNT(DISTINCT ip) AS cnt FROM stats WHERE DATE(created)=CURDATE()";
-    $query    = $this->db->query($q_string);    
-    $stats['visitors_today'] = $query->row_array();
-
-    // Ios Devices
-    $q_string  = "SELECT ROUND(
-      (SELECT COUNT(id) FROM stats WHERE mobile='Apple iPhone' OR mobile='iPad') / 
-      (SELECT COUNT(id) FROM stats WHERE mobile<>'')*100,1) AS cnt";
-    $query    = $this->db->query($q_string);
-    $stats['ios_devices'] = $query->row_array();    
-
-    // Popular Posts
-    $q_string  = "SELECT id, title, hits FROM posts WHERE status=1 ORDER BY hits DESC LIMIT 20";
-    $query    = $this->db->query($q_string);
-    $stats['popular_posts'] = $query->result_array();
-    
-    // Popular Pages
-    $q_string  = "SELECT title, slug, hits FROM pages WHERE status=1 ORDER BY hits DESC LIMIT 20";
-    $query    = $this->db->query($q_string);
-    $stats['popular_pages'] = $query->result_array();
-
-    // Total Posts
-    $stats['total_posts'] = $this->system_db->countRecords('posts');
-
-    // Total Pages
-    $stats['total_pages'] = $this->system_db->countRecords('pages');    
-
-    // PHP Info
-    $stats['php_info'] = $this->system_core->phpinfo_array();
-
-    // AVG Visitors
-    $q_string  = "SELECT DATE_FORMAT(created, '%d %M %Y') AS thedate, COUNT(DISTINCT ip) as cnt FROM stats GROUP BY DATE(created) ORDER BY created DESC LIMIT 15 OFFSET 1";
-    $query    = $this->db->query($q_string);
-    $daily_visitors = $query->result_array();
-    $sumall = 0;
-    foreach ($daily_visitors as $item) {$sumall += $item['cnt'];}
-    $stats['avg_visitors_day']   = ceil($sumall / 15);
-    $stats['avg_visitors_month'] = ceil($stats['avg_visitors_day']*30);
-    $stats['avg_visitors_year']  = ceil($stats['avg_visitors_day']*365);
-
-    $stats['avg_visitors_day']   = $this->system_core->number_format_thousands($stats['avg_visitors_day']);
-    $stats['avg_visitors_month'] = $this->system_core->number_format_thousands($stats['avg_visitors_month']);
-    $stats['avg_visitors_year']  = $this->system_core->number_format_thousands($stats['avg_visitors_year']);
-
-    // Growth
-    $q_string  = "SELECT DATE_FORMAT(created, '%d %M %Y') AS thedate, COUNT(DISTINCT ip) as cnt FROM stats GROUP BY DATE(created) ORDER BY created DESC LIMIT 15 OFFSET 16";    
-    $query    = $this->db->query($q_string);
-    $old_daily_visitors = $query->result_array();
-    $old_sumall = array_sum(array_column($old_daily_visitors,'cnt'));   
-    if($old_sumall != 0) {
-        $stats['growth'] = round(($sumall - $old_sumall)*100 / $old_sumall,2);
-    } else {
-        $stats['growth'] = 0;
-    }
-
-    // Countries
-    $q_string = "
-        SELECT country, country_code, count(DISTINCT ip) as cnt
-        FROM stats
-        WHERE country <> 'Undefined' AND country <> '0'
-        GROUP BY country
-        ORDER BY cnt DESC
-        ";     
-    $query = $this->db->query($q_string);
-    $stats['countries'] = $query->result_array();   
-    $sum_countries = array_sum(array_column($stats['countries'],'cnt'));
-    foreach($stats['countries'] as &$item) {
-        $item['perc'] = round($item['cnt']*100 / $sum_countries,2);
-    } // END for each  
-    
     return $stats;
 }
 

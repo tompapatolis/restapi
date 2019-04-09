@@ -4,9 +4,17 @@
  * Colors
  */
 
-$color_text: 		#333;
-$color_background:  #f7f7f7;
-$color_red:  		#DC3546;
+$text-color-normal: #949EA7;
+$text-color-light: #4B5966;
+$text-color-richer: #93B7DB;
+$text-color-highlight: #C36522;
+$link-color: #6DB2F7; 
+$panel-color: #242C34;
+$accent-color: #FFA565;
+$error-color: #F03232;
+$button-background: #286DB2;
+$button-text-color: black;
+$color_background: #181E24;
 
 /**
  * Shadows
@@ -22,14 +30,15 @@ $shadow_right: 	inset -15px 0px 15px -15px rgba(0,0,0,0.25);
 
 body {
 	font-family: 'Montserrat', 'Open Sans', Roboto, sans-serif;
-	color: $color_text;
+	color: $text-color-normal;
 	background: $color_background;
 }
 
-a {color: $color_red;}
+a {color: $link-color;}
 
-h1,h2,h3,.h1,.h2,.h3 {font-weight: 900;}
-h4,h5,h6,.h4,.h5,.h6 {font-weight: 800;}
+h1,h2,h3,.h1,.h2,.h3 {font-weight: 900;color: $text-color-light;}
+h4,h5,h6,.h4,.h5,.h6 {font-weight: 800;color: $text-color-light;}
+.color-richer {color: $text-color-richer;}
 
 /**
  * Statistics
@@ -38,12 +47,20 @@ h4,h5,h6,.h4,.h5,.h6 {font-weight: 800;}
 .stats-box-wrapper {
 	display:flex;flex-wrap:wrap;
 	.stats-box {
-		background: #fff;
+		flex-basis: calc(14.14% - .5rem);
+		background: $panel-color;
 		margin:.25rem; padding: 1rem 1.375rem;
-		box-shadow: $shadow_basic;		
+		box-shadow: $shadow_basic;
 	}
 	span.flag img {height: auto;width:2rem;}
+	.stats-box.first  { flex-basis: calc(25% - .5rem); }
+	.stats-box.second { flex-basis: calc(75% - .5rem); }
 }
+
+ul.table {
+	li span {border-color: $text-color-light;}
+} 
+
 @media(max-width: 990px) {
 	.stats-box-wrapper .stats-box {flex-basis:100%;}
 }

@@ -9,7 +9,7 @@ class Stats extends CI_Controller {
     }  
 
 public function index() {
-	$data = $this->mod_stats->getStats2('stats_tomsnews');
+	$data = $this->mod_stats->getStats('stats_tomsnews');
 	$this->load->display('stats', $data);
 }
 	

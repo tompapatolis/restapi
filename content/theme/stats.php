@@ -5,6 +5,13 @@
 
 	<div class="container-xl">
 		<div class="stats-box-wrapper">
+			<div class="stats-box first">
+				
+			</div>
+
+			<div class="stats-box second">
+				
+			</div>
 
 			<div class="stats-box">
 				<h4>Summary</h4>
@@ -44,8 +51,15 @@
 					<li>
 						<span>Growth Rate</span>
 						<span><?=$growth?>%</span>
+					</li>				
+					<li>
+						<span>Total Posts</span>
+						<span><?=$total_posts?></span>
+					</li>	
+					<li>
+						<span>Total Pages</span>
+						<span><?=$total_pages?></span>
 					</li>					
-					
 
 				</ul>
 			</div><!-- stats-box -->			
@@ -88,7 +102,7 @@
 			</div><!-- stats-box -->
 
 			<div class="stats-box">
-				<h4>Popular Posts</h4>
+				<h4>Popular <span class="color-richer">Posts</span></h4>
 				<ul class="stats table">
 					<?php foreach ($popular_posts as $item):?>
 						<li>
@@ -100,7 +114,7 @@
 			</div><!-- stats-box -->
 
 			<div class="stats-box">
-				<h4>Popular Pages</h4>
+				<h4>Popular <span class="color-richer">Pages</span></h4>
 				<ul class="stats table">
 					<?php foreach ($popular_pages as $item):?>
 						<li>
