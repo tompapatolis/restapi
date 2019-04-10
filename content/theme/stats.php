@@ -1,18 +1,33 @@
+<header class="header-stats">
+	<h1>Statistics</h1>
+</header>
+
 <section class="section section-stats">
 	<div class="container-xl">
-		<h1>Statistics</h1>
-	</div>
 
-	<div class="container-xl">
 		<div class="stats-box-wrapper">
-			<div class="stats-box first">
-				
+			<div class="stats-box stats-gauge">
+				<div><?=$users_now?><span>Online Now</span></div>
+				<div><?=$visitors_today?><span>Visitors Today</span></div>
+				<div><?=$hits_today?><span>Hits Today</span></div>
 			</div>
 
 			<div class="stats-box second">
 				
-			</div>
+				<div class="chart" data-max-value="<?=max(array_column($countries,'cnt'))?>">
+					<?php foreach ( array_slice($countries,0,24) as $item):?>
+ 						<div class="bar-wrap">
+							<div class="bar" data-value="<?=$item['cnt']?>">&nbsp;</div>
+							<div class="bar-label"><?=$item['country']?></div>
+							<div class="bar-flag"><img src="<?=site_images().'flags/'.strtolower($item['country_code']).'.svg'?>"></div>
+						</div>
+					<?php endforeach;?>
+				</div>
 
+			</div>
+		</div>
+
+		<div class="stats-box-wrapper">
 			<div class="stats-box">
 				<h4>Summary</h4>
 				<ul class="stats table">

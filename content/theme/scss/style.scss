@@ -47,14 +47,15 @@ h4,h5,h6,.h4,.h5,.h6 {font-weight: 800;color: $text-color-light;}
 .stats-box-wrapper {
 	display:flex;flex-wrap:wrap;
 	.stats-box {
-		flex-basis: calc(14.14% - .5rem);
 		background: $panel-color;
-		margin:.25rem; padding: 1rem 1.375rem;
+		margin:.25rem; padding: 1rem;
 		box-shadow: $shadow_basic;
+		flex:2;
 	}
+	.stats-box:last-child {flex:3;}
 	span.flag img {height: auto;width:2rem;}
-	.stats-box.first  { flex-basis: calc(25% - .5rem); }
-	.stats-box.second { flex-basis: calc(75% - .5rem); }
+	.stats-box.stats-gauge  { flex:2; }
+	.stats-box.second { flex:4; }
 }
 
 ul.table {
@@ -63,4 +64,23 @@ ul.table {
 
 @media(max-width: 990px) {
 	.stats-box-wrapper .stats-box {flex-basis:100%;}
+}
+
+.header-stats {padding: 1rem 1rem 0 1rem;}
+.section-stats {padding: 0;}
+.chart .bar {background: $button-background;}
+
+.stats-gauge {
+	display: flex;
+
+	> div {
+		flex:1;		
+		display: flex; justify-content: center; flex-direction: column; text-align: center;
+		font-weight: 800; font-size: 2.75rem; line-height: 2.75rem;
+		span {font-weight: 400; font-size: .9rem;line-height: .9rem;}
+	}
+
+	>div:nth-child(1) { color: $error-color; }
+	>div:nth-child(2) { color: $link-color; border-left:3px solid $text-color-light;}
+	>div:nth-child(3) {border-left:3px solid $text-color-light;}
 }

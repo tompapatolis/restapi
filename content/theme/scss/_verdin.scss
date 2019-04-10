@@ -438,35 +438,42 @@ blockquote {
  */
 
 .chart {
-	display: flex; margin: 1rem 0;
+	display: flex; margin-top: 1rem;
+   
 	.bar-wrap {
 		flex:1; display:flex;
 		flex-direction:column;
-		justify-content:flex-end;
-		margin:1px; border:1px solid rgba(0,0,0,.1);
-		height: 300px; position:relative;
-		background-image: linear-gradient(90deg, rgba(0,0,0,.05), rgba(0,0,0,0));
+		justify-content:flex-end;		
+		height: 150px; position:relative;
+		margin: 0 .5rem;
 	}
 	.bar {
-		height:0; background-color: $color_blue;
-		background-image: linear-gradient(90deg, rgba(0,0,0,.05), rgba(0,0,0,0));
+		height:0;
+		background-color: $color_blue;
+		box-shadow:0px 0px 0 rgb(29,98,167),1px -1px 0 rgb(28,97,166),2px -2px 0 rgb(27,96,165),3px -3px 0 rgb(26,95,164),4px -4px 0 rgb(24,93,162),5px -5px 0 rgb(23,92,161),6px -6px 0 rgb(22,91,160),7px -7px 0 rgb(21,90,159),8px -8px 0 rgb(20,89,158), 9px -9px 0 rgb(19,88,157);
 	}
 	.bar-flag {
-		position: absolute; top:0; left: calc(50% - 1.25rem);
-		img {width: 2.5rem; height: auto; box-shadow:1px 1px 2px rgba(0,0,0,.25);}
+		position: absolute;
+		bottom:0;
+		left: calc(50% - 1rem);
+		img {width: 2rem; height: 1.25rem;}
 	}
 	.bar-label {
 		position: absolute;
-		bottom:-1rem;
+		bottom:0;
 		left: calc(50% - .75rem);
 		overflow: hidden;
 		transform: rotate(-90deg);
-		transform-origin: 0 0;
-		white-space: nowrap; background: rgba(255,255,255,.8);
+		transform-origin: 0 0;		
 		text-align: left;
-		padding: 0 1rem;
+		padding: 0 .5rem;
 		line-height: 1.5rem;
 		border-radius: .125rem;
+		background: rgba(0,0,0,.5);
+		font-size: .85rem; font-weight: 500;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		max-width: 150px;
 	}
 }
 
