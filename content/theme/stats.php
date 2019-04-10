@@ -1,5 +1,20 @@
 <header class="header-stats">
-	<h1>Statistics</h1>
+	<div>verdin<span class="color-richer">.io</span> api</div>
+	<div>
+		<select class="form-control">
+			<option value="tomsnews.net">tomsnews.net</option>
+			<option value="verdin.io">verdin.io</option>
+			<option value="fofiko.com">verdin.io</option>
+			<option value="fofiko.com">vicky.io</option>
+		</select>
+	</div>
+	<div>
+	    <div class="checkbox">
+	        <input type="checkbox" id="cb1" name="cc" />
+	        <label for="cb1"></label>
+	        <span>Auto Refresh</span>
+	    </div>
+	</div>
 </header>
 
 <section class="section section-stats">
@@ -74,8 +89,11 @@
 					<li>
 						<span>Total Pages</span>
 						<span><?=$total_pages?></span>
-					</li>					
-
+					</li>				
+					<li>
+						<span>Rendered in</span>
+						<span>{elapsed_time} sec</span>
+					</li>	
 				</ul>
 			</div><!-- stats-box -->			
 

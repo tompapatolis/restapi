@@ -66,7 +66,15 @@ ul.table {
 	.stats-box-wrapper .stats-box {flex-basis:100%;}
 }
 
-.header-stats {padding: 1rem 1rem 0 1rem;}
+.header-stats {
+	display:flex;flex-wrap:wrap;
+	> div {
+		padding: 1rem;
+	}
+	> div:nth-child(1) {font-weight: 900; font-size: 1.75rem; flex:1;}
+	> div:nth-child(2) {}
+	> div:nth-child(3) {}
+}
 .section-stats {padding: 0;}
 .chart .bar {background: $button-background;}
 
@@ -80,7 +88,20 @@ ul.table {
 		span {font-weight: 400; font-size: .9rem;line-height: .9rem;}
 	}
 
-	>div:nth-child(1) { color: $error-color; }
-	>div:nth-child(2) { color: $link-color; border-left:3px solid $text-color-light;}
-	>div:nth-child(3) {border-left:3px solid $text-color-light;}
+	> div:nth-child(1) { color: $error-color; }
+	> div:nth-child(2) { color: $link-color; border-left:3px solid $text-color-light;}
+	> div:nth-child(3) {border-left:3px solid $text-color-light;}
+}
+
+/**
+ * Forms
+ */
+
+select.form-control {
+	background: $panel-color; margin:0;
+	color: $text-color-normal;
+	border: none;
+	border-radius: .25rem;
+	line-height: 1rem;
+	outline:0; padding: .375rem .5rem;
 }

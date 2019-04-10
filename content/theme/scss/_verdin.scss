@@ -780,3 +780,31 @@ ul.table {
 	}
 	li:last-child span {border-bottom: none;}
 }
+
+/**
+ * Custom Checkbox
+ */
+
+.checkbox {
+	position: relative;
+	padding-left: .25rem;
+	margin-top: .25rem;
+	label {
+		cursor:pointer;
+		position: absolute;
+		width: 1rem; height: 1rem; border-radius: .5rem;
+		top: calc(50% - .5rem); left: 0;
+		background:#4B5966;
+
+	}
+	label:after {
+		content: '';
+    	position: absolute;
+    	width: 1rem; height: 1rem; border-radius: .5rem;
+    	background:#4B5966;
+    	top: 0; left: 0;
+	}
+	input[type=checkbox] {visibility: hidden;}
+	input[type=checkbox]:checked + label:after {background:#F03232;}
+	span {user-select: none;}
+}
