@@ -71,7 +71,7 @@ function getStats($table) {
         FROM $table
         GROUP BY DATE(created)
         ORDER BY created DESC
-        LIMIT 24
+        LIMIT 14
         ";
     $query = $this->db->query($q);
     $stats['daily_hits'] = $query->result_array();
@@ -82,7 +82,7 @@ function getStats($table) {
         FROM $table
         GROUP BY DATE(created)
         ORDER BY created DESC
-        LIMIT 24
+        LIMIT 14
         ";
     $query = $this->db->query($q);
     $stats['daily_visitors'] = $query->result_array();
@@ -142,7 +142,6 @@ function getStats($table) {
         WHERE country <> 'Undefined' AND country <> '0'
         GROUP BY country
         ORDER BY cnt DESC
-        LIMIT 24
         ";     
     $query = $this->db->query($q);
     $stats['countries'] = $query->result_array();   
@@ -161,7 +160,7 @@ function getStats($table) {
         WHERE post_id <> -1
         GROUP BY post_id
         ORDER BY cnt DESC
-        LIMIT 24
+        LIMIT 30
         ";     
     $query = $this->db->query($q);
     $stats['popular_posts'] = $query->result_array();   
@@ -173,7 +172,7 @@ function getStats($table) {
         WHERE page_slug <> ''
         GROUP BY page_slug
         ORDER BY cnt DESC
-        LIMIT 24
+        LIMIT 30
         ";     
     $query = $this->db->query($q);
     $stats['popular_pages'] = $query->result_array();

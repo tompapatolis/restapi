@@ -28,6 +28,18 @@ $c_reddit: 	    #FF4500;
 $c_google-plus: #4285F4;
 $c_pinterest:   #bd081c;
 
+// Theme Colors
+$text-color-normal: #949EA7;
+$text-color-light: #4B5966;
+$text-color-richer: #93B7DB;
+$text-color-highlight: #C36522;
+$link-color: #6DB2F7; 
+$panel-color: #242C34;
+$accent-color: #FFA565;
+$error-color: #F03232;
+$button-background: #286DB2;
+$button-text-color: black;
+$color_background: #181E24;
 
 /**
  * Shadows
@@ -69,7 +81,7 @@ p {
 
 .container-xs  {width: 360px;margin:0 auto;}
 .container-sm  {width: 480px;margin:0 auto;}
-.container-md  {width: 640px;margin:0 auto;}
+.container-md  {width: 760px;margin:0 auto;}
 .container 	   {width: 900px;margin:0 auto;}
 .container-lg  {width: 1200px;margin:0 auto;}
 .container-xl  {width: 1900px;margin:0 auto;}
@@ -91,7 +103,7 @@ p {
  * Sections
  */
 
-.section {
+.section, .header, .footer {
 	padding: 2rem 0;
 }
 @media(max-width: 990px) {
@@ -600,6 +612,16 @@ input.form-control::placeholder {color:#aaa;}
 	}
 }
 
+select.form-control {
+	background: $panel-color; margin:0;
+	color: $text-color-normal;
+	border: none;
+	border-radius: .25rem;
+	line-height: 1rem;
+	outline:0; padding: .375rem .5rem;
+	user-select: none;
+}
+
 /**
  * Flexbox
  */
@@ -776,8 +798,11 @@ ul.table {
 		padding: .125rem .375rem;
 		border-bottom: 1px solid rgba(0,0,0,.15);
 		vertical-align: middle;
+		border-bottom: 1px dotted $text-color-light;
 		&:last-child {text-align: right;font-weight: 600;}
+		img {height: 1.5rem; width: 1.5rem; display: inline-block;}
 	}
+	&.expand-first li span:first-child {width: 100%;}
 	li:last-child span {border-bottom: none;}
 }
 
@@ -789,6 +814,7 @@ ul.table {
 	position: relative;
 	padding-left: .25rem;
 	margin-top: .25rem;
+	user-select: none;
 	label {
 		cursor:pointer;
 		position: absolute;
@@ -806,5 +832,22 @@ ul.table {
 	}
 	input[type=checkbox] {visibility: hidden;}
 	input[type=checkbox]:checked + label:after {background:#F03232;}
-	span {user-select: none;}
+}
+
+/**
+ * Collapsible Panel
+ */
+
+.collapse {display:none !important;}
+.toggle-collapse {
+	display:block; cursor:pointer; user-select: none;
+	&::after {
+		font-family: "Verdin Icons";
+		content: "\e91a";
+		margin-left:.25rem;
+		transition:transform ease .25s;
+		display: inline-block;
+	}
+	&.rotate::after {transform: rotate(-180deg);}
+	&:hover {text-decoration:underline;}
 }

@@ -44,64 +44,44 @@ h4,h5,h6,.h4,.h5,.h6 {font-weight: 800;color: $text-color-light;}
  * Statistics
  */
 
-.stats-box-wrapper {
-	display:flex;flex-wrap:wrap;
-	.stats-box {
-		background: $panel-color;
-		margin:.25rem; padding: 1rem;
-		box-shadow: $shadow_basic;
-		flex:2;
-	}
-	.stats-box:last-child {flex:3;}
-	span.flag img {height: auto;width:2rem;}
-	.stats-box.stats-gauge  { flex:2; }
-	.stats-box.second { flex:4; }
-}
+.section-stats h2 {margin-top:2rem;}
+.chart {margin-top:4rem;}
 
-ul.table {
-	li span {border-color: $text-color-light;}
-} 
+.stats-display {
+	display: flex;
+	font-weight: 700;
+	> div {		
+		flex:1; text-align: center;		
+		padding: 2rem 0;
+		font-size: 4rem; line-height: 4rem;
+	}
+
+	div:nth-child(1) {color:$error-color;}
+	div:nth-child(2) {color:$link-color; border-left: 3px solid $text-color-light;}
+	div:nth-child(3) {border-left: 3px solid $text-color-light;}
+	span {
+		display: block;	font-weight: 400;
+		font-size: .9rem; line-height: .9rem;	
+	}
+}
 
 @media(max-width: 990px) {
-	.stats-box-wrapper .stats-box {flex-basis:100%;}
-}
-
-.header-stats {
-	display:flex;flex-wrap:wrap;
-	> div {
-		padding: 1rem;
+	.stats-display {
+		> div {font-size: 2rem; line-height: 2rem;}
+		span {font-size: .8rem; line-height: .8rem;	}
 	}
-	> div:nth-child(1) {font-weight: 900; font-size: 1.75rem; flex:1;}
-	> div:nth-child(2) {}
-	> div:nth-child(3) {}
 }
-.section-stats {padding: 0;}
-.chart .bar {background: $button-background;}
 
-.stats-gauge {
-	display: flex;
+.stats-header {
+	display: flex; margin: 1rem 0;
+	> div:nth-child(1) {flex:1; color: $text-color-light;font-weight: 900; font-size:2rem;}
+	> div:nth-child(2) {padding: 0 2rem;}
+}
 
-	> div {
-		flex:1;		
-		display: flex; justify-content: center; flex-direction: column; text-align: center;
-		font-weight: 800; font-size: 2.75rem; line-height: 2.75rem;
-		span {font-weight: 400; font-size: .9rem;line-height: .9rem;}
+@media(max-width: 990px) {
+	.stats-header {
+		> div:nth-child(1) {font-size:1.25rem;}
+		> div:nth-child(2) {padding: 0 .75rem;font-size:.8rem;}
+		> div:nth-child(3) {font-size:.8rem;}	
 	}
-
-	> div:nth-child(1) { color: $error-color; }
-	> div:nth-child(2) { color: $link-color; border-left:3px solid $text-color-light;}
-	> div:nth-child(3) {border-left:3px solid $text-color-light;}
-}
-
-/**
- * Forms
- */
-
-select.form-control {
-	background: $panel-color; margin:0;
-	color: $text-color-normal;
-	border: none;
-	border-radius: .25rem;
-	line-height: 1rem;
-	outline:0; padding: .375rem .5rem;
 }
